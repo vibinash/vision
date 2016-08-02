@@ -7,7 +7,7 @@ from matplotlib import pyplot as plt
 #		 		 -1 unchanged (including alpha channel) 
 
 # Read in grayscale (0)
-img = cv2.imread('jurassic_world.jpg', 1)
+img = cv2.imread('../images/jurassic_world.jpg', 1)
 
 # Convert (BGR) to (RBG)
 img2 = img[:,:,::-1]

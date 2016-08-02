@@ -5,7 +5,7 @@ import cv2
 #		 		 -1 unchanged (including alpha channel) 
 
 # Read in grayscale (0)
-img = cv2.imread('jurassic_world.jpg', 0)
+img = cv2.imread('../images/jurassic_world.jpg', 0)
 
 # WINDOW_AUTOSIZE - you cannot resize
 cv2.namedWindow('jurassic', cv2.WINDOW_NORMAL)

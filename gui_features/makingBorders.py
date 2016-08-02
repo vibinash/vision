@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 # B, G, R
 BLUE = [255, 0, 0]
 
-img = cv2.imread('jurassic_park.jpeg')
+img = cv2.imread('../images/jurassic_park.jpeg')
 
 replicate = cv2.copyMakeBorder(img, 10, 10, 10, 10, cv2.BORDER_REPLICATE)
 #reflect = cv2.copyMakeBorder(img, 10, 10, 10, 10, cv2.BORDER_REFLECT)
