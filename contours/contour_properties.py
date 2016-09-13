@@ -22,7 +22,7 @@ print 'Aspect Ratio: ', aspect_ratio
 area = cv2.contourArea(cnt)
 bound_rect_area = w * h
 extent = float(area)/bound_rect_area
-print 'Extent: ', Extent
+print 'Extent: ', extent
 
 # Solidity
 # Ratio of contour area to its convex hull area
@@ -31,34 +31,35 @@ hull_area = cv2.contourArea(hull)
 solidity = float(area)/hull_area
 print 'Solidity: ', solidity
 
+# Equivalent Diameter
+# Diameter of the circle whose area is the same as the contour area
+equ_diameter = np.sqrt(4*area/np.pi)
+print 'Equivalent Diameter: ', equ_diameter
 
+# Orientation
+# angle at which the object is directed. Also returns Major and Minor Axis length
+(x,y), (Ma, ma), angle = cv2.fitEllipse(cnt)
+print 'Orientation: '
+print '     Angle on X: ', x
+print '     Angle on Y: ', y
+print '     length of Major Axis: ', Ma
+print '     length of minor axis: ', ma
 
-cx = int(M['m10']/M['m00'])
-cy = int(M['m01']/M['m00'])
-print 'Cx: ', cx
-print 'Cy: ', cy
-
-# Contour Area
-area = cv2.contourArea(cnt)
-print 'Area: ', area
-
-# Contour Perimeter
-perimeter = cv2.arcLength(cnt,True)
-print 'Perimeter: ', perimeter
-
-# Convex Hull
-# converHull(contours, hull (AVOID), clockwise[True/False], returnPoints[True/False])
-hull = cv2.convexHull(cnt)
-print 'Hull: ', hull
-
-# Check if Contour is Convex?
-k = cv2.isContourConvex(cnt)
-print 'Is Convex? : ', k
+# Mask and Get Pixel Points
+# Get all the points comprising of that object
+mask = np.zeros(imgray.shape, np.uint8)
+cv2.drawContours(mask, [cnt], 0,255,-1)
+# Numpy function returns coordinates in (row, column)
+pixelpoints = np.transpose(np.nonzero(mask))
+# CV gives coordinates in (x,y) format
+# Note: row = x, column = y
+# pixelpoints = cv2.findNonZero(mask)
 
 # Bounding Rectangle
 x,y,w,h = cv2.boundingRect(cnt)
 img = cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),2)
 
 cv2.imshow('star', img)
+# cv2.imshow('points', pixelpoints)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
