@@ -54,6 +54,7 @@ pixelpoints = np.transpose(np.nonzero(mask))
 # CV gives coordinates in (x,y) format
 # Note: row = x, column = y
 # pixelpoints = cv2.findNonZero(mask)
+print '     Length of mask of object (all points): ', len(pixelpoints)
 
 # Bounding Rectangle
 x,y,w,h = cv2.boundingRect(cnt)
