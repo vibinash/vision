@@ -56,6 +56,17 @@ pixelpoints = np.transpose(np.nonzero(mask))
 # pixelpoints = cv2.findNonZero(mask)
 print '     Length of mask of object (all points): ', len(pixelpoints)
 
+# Max Value, Min Value, Max Value Location, Min Value Location
+min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(imgray, mask = mask)
+print 'Min Value: ', min_val
+print 'Max Value: ', max_val
+print 'Min Loc: ', min_loc
+print 'Min Loc: ', max_loc
+
+# Mean Color/ Mean Intensity
+mean_val = cv2.mean(imgray, mask = mask)
+print 'Mean Value: ', mean_val
+
 # Bounding Rectangle
 x,y,w,h = cv2.boundingRect(cnt)
 img = cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),2)
