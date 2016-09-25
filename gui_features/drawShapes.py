@@ -15,7 +15,7 @@ img = rectangle(img, (384,0), (510,120), (0,255, 0), 3)
 # Draw an Ellipse [ Center location(x,y) | (major axis length, minor axis length) | angle | startAngle | endAngle | color | thickness ]
 img = ellipse(img, (256,256), (100,50), 0,0,270,(0,255,0), 1)
 
-# Draw a circle
+# Draw a circle [img, center(x, y), radius, color(b,g,r), thickness]
 img = circle(img, (477,63), 63, (0,0,255), -1)
 
 # Draw a polygon
