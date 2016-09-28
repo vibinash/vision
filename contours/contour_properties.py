@@ -67,6 +67,17 @@ print 'Min Loc: ', max_loc
 mean_val = cv2.mean(imgray, mask = mask)
 print 'Mean Value: ', mean_val
 
+# Get extreme points
+leftmost = tuple(cnt[cnt[:,:,0].argmin()][0])
+rightmost = tuple(cnt[cnt[:,:,0].argmax()][0])
+topmost = tuple(cnt[cnt[:,:,1].argmin()][0])
+bottommost = tuple(cnt[cnt[:,:,1].argmax()][0])
+print 'Left most point: ', leftmost
+img = cv2.circle(img, leftmost, 5, (255,0,0), -1)
+img = cv2.circle(img, rightmost, 5, (255,0,0), -1)
+img = cv2.circle(img, topmost, 5, (255,0,0), -1)
+img = cv2.circle(img, bottommost, 5, (255,0,0), -1)
+
 # Bounding Rectangle
 x,y,w,h = cv2.boundingRect(cnt)
 img = cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),2)
