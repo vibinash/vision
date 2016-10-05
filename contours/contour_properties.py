@@ -78,6 +78,25 @@ img = cv2.circle(img, rightmost, 5, (255,0,0), -1)
 img = cv2.circle(img, topmost, 5, (255,0,0), -1)
 img = cv2.circle(img, bottommost, 5, (255,0,0), -1)
 
+# Convexity Defects
+# Any deviation of this object from the convex hull can be
+# considered as Convexity Defects
+# adding parameter returnPoints = False, finds the convexity defects
+# returns an array where each row is
+# [start pt, end pt, farthest pt, approx dist to farthest pt]
+dhull = cv2.convexHull(cnt, returnPoints = False)
+defects = cv2.convexityDefects(cnt, dhull)
+
+for i in range(defects.shape[0]):
+    s,e,f,d = defects[i,0]
+    start = tuple(cnt[s][0])
+    end = tuple(cnt[e][0])
+    far = tuple(cnt[f][0])
+    cv2.line(img, start, end, [0,255,0],2)
+    cv2.circle(img, far, 5, [0,0,255], -1)
+
+print 'Dimensions of defects: ', defects.shape
+
 # Bounding Rectangle
 x,y,w,h = cv2.boundingRect(cnt)
 img = cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),2)
