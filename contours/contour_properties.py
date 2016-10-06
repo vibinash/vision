@@ -97,6 +97,21 @@ for i in range(defects.shape[0]):
 
 print 'Dimensions of defects: ', defects.shape
 
+# Point Polygon Test
+# Finds the shortest distance between a point in the image and a
+# contour. It returns the distance which is negative when the point
+# is outside the contour, positive when the point is inside and zero
+# if the point is on the contour
+# if measureDist = False, it returns -1,0,+1
+dist = cv2.pointPolygonTest(cnt, (50,50), measureDist = True)
+print 'Point Polygon Test: ', dist
+
+# Match Shapes
+# compare two shapes or contours and returns a metric demonstrating
+# the similarity. The lower the result, the better match it is
+# calculate on hu-moment values
+# ret = cv2.matchShapes(cnt1, cnt2, 1, 0, 0)
+
 # Bounding Rectangle
 x,y,w,h = cv2.boundingRect(cnt)
 img = cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),2)
