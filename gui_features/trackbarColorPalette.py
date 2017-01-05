@@ -8,7 +8,7 @@ def nothing(x):
 img = np.zeros((300,512,3), np.uint8)
 cv2.namedWindow('image')
 
-# Create a trackbars for color change
+# Create trackbars for color change
 # createTrackbar(<trackbar name>, <window name to attach>, <default value>, <max value>, <callbackfunction>)
 cv2.createTrackbar('R', 'image', 0, 255, nothing)
 cv2.createTrackbar('G', 'image', 0, 255, nothing)
@@ -23,12 +23,12 @@ while(1):
 	k = cv2.waitKey(1) & 0xFF
 	if k == 27:
 		break
-	
+
 	# get current positions of four trackbars
 	r = cv2.getTrackbarPos('R', 'image')
 	g = cv2.getTrackbarPos('G', 'image')
 	b = cv2.getTrackbarPos('B', 'image')
-	s = cv2.getTrackbarPos(switch, 'image')	
+	s = cv2.getTrackbarPos(switch, 'image')
 
 	if s == 0:
 		img[:] = 0
